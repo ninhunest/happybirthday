@@ -30,8 +30,9 @@ const animationTimeline = () => {
         .join("</span><span>")}</span>`;
 
     hbd.innerHTML = `<span>${hbd.innerHTML
-        .split("")
+        .split("").map(i => i == ' ' ? '&nbsp;' : i)
         .join("</span><span>")}</span>`;
+    hbd.innerHTML = hbd.innerHTML.replace('<span>N</span><span>G</span><span>À</span><span>Y</span><span>&nbsp;</span>', '<span>N</span><span>G</span><span>À</span><span>Y</span><br>')
 
     const ideaTextTrans = {
         opacity: 0,
@@ -99,7 +100,7 @@ const animationTimeline = () => {
         1.5, {
             visibility: "visible",
         },
-        0.05
+        0.02
     )
     .to(".fake-btn", 0.1, {
         backgroundColor: "rgb(127, 206, 248)",
@@ -250,19 +251,6 @@ const animationTimeline = () => {
         },
         0.3
     )
-    .to(".six", 0.5, {
-        opacity: 0,
-        y: 30,
-        zIndex: "-1",
-    })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
-    .to(
-        ".last-smile",
-        0.5, {
-            rotation: 90,
-        },
-        "+=1"
-    );
 
     // Restart Animation on click
     const replyBtn = document.getElementById("replay");
